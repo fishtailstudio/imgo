@@ -1,0 +1,55 @@
+# ImGo
+[English](README.md) | 简体中文
+
+![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/fishtailstudio/imgo)
+![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/fishtailstudio/imgo)
+[![GoDoc](https://godoc.org/github.com/fishtailstudio/imgo?status.svg)](https://pkg.go.dev/github.com/fishtailstudio/imgo)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 介绍
+
+`Image Golang` => `Img Go` => `ImGo` `[ˈɪmɡəʊ]`
+
+`ImGo` 是一个开源的 Golang 图片处理和操作的库。它为创建、编辑和合成图像提供了一种更简单、更具表现力的方法。
+
+## 安装
+
+```bash
+go get -u github.com/fishtailstudio/imgo
+```
+
+## 文档
+
+
+## 如何使用
+
+```go
+package main
+
+import (
+    "github.com/fishtailstudio/imgo"
+    "image/color"
+)
+
+func main() {
+    imgo.Canvas(500, 500, color.Black).
+        Insert("gopher.png", 100, 100).
+        Save("out.png")
+}
+```
+
+## 维护者
+
+[@fishtailstudio](https://github.com/fishtailstudio)
+
+## 如何贡献
+
+非常欢迎你的加入！欢迎[提交 Issue](https://github.com/fishtailstudio/imgo/issues/new)或提交 Pull Request。
+
+## 点个 Star ! ⭐
+
+如果你喜欢或正在使用这个项目，麻烦你点个 Star，谢谢！
+
+## 使用许可
+
+[MIT](LICENSE) © fishtailstudio
