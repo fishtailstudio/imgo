@@ -286,11 +286,10 @@ func (i *Image) Grayscale() *Image {
         return i
     }
 
-    gray := &image.Gray{}
     for x := 0; x < i.width; x++ {
         for y := 0; y < i.height; y++ {
             rgbColor := i.image.At(x, y)
-            grayColor := gray.ColorModel().Convert(rgbColor)
+            grayColor := color.GrayModel.Convert(rgbColor)
             i.image.Set(x, y, grayColor)
         }
     }
