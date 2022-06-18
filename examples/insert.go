@@ -1,13 +1,12 @@
 package main
 
 import (
-	"image/color"
-
-	"github.com/fishtailstudio/imgo"
+    "github.com/fishtailstudio/imgo"
+    "image/color"
 )
 
 func main() {
-	imgo.Canvas(500, 500, color.White).
-		Insert("gopher.png", 100, 100).
-		Save("out.png")
+    imgo.Canvas(500, 500, color.White).
+        Insert("gopher.png", 100, 100).
+        Save("out.png")
 }
