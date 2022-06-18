@@ -33,8 +33,8 @@ func (i *Image) GaussianBlur(ksize int, sigma float64) *Image {
     return i
 }
 
-// NormalizeKernel normalizes a kernel.
-func NormalizeKernel(kernel [][]float64) {
+// normalizeKernel normalizes a kernel.
+func (i Image) normalizeKernel(kernel [][]float64) {
     var sum float64
     for _, row := range kernel {
         for _, value := range row {
@@ -72,14 +72,14 @@ func (i *Image) Blur(ksize int) *Image {
         kernel[p] = row
     }
 
-    i.ImageFilterFast(kernel)
+    i.imageFilterFast(kernel)
 
     return i
 }
 
-// ImageFilterFast returns a filtered image with Goroutine.
-func (i *Image) ImageFilterFast(kernel [][]float64) *Image {
-    NormalizeKernel(kernel)
+// imageFilterFast returns a filtered image with Goroutine.
+func (i *Image) imageFilterFast(kernel [][]float64) *Image {
+    i.normalizeKernel(kernel)
     dst := image.NewRGBA(i.image.Bounds())
     kernelSize := len(kernel)
     radius := (kernelSize - 1) / 2
@@ -113,9 +113,9 @@ func (i *Image) ImageFilterFast(kernel [][]float64) *Image {
     return i
 }
 
-// ImageFilter returns a filtered image.
-func (i *Image) ImageFilter(kernel [][]float64) *Image {
-    NormalizeKernel(kernel)
+// imageFilter returns a filtered image.
+func (i *Image) imageFilter(kernel [][]float64) *Image {
+    i.normalizeKernel(kernel)
     dst := image.NewNRGBA64(i.image.Bounds())
     kernelSize := len(kernel)
     radius := (kernelSize - 1) / 2
