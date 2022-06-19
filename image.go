@@ -45,7 +45,7 @@ func (i Image) String() string {
 }
 
 // addError adds an error to imgo.
-// if OnlyReason is true, only the error message is added.
+// if OnlyReason is true, only the error message is returned.
 func (i *Image) addError(err error, OnlyReason ...bool) {
     log.SetPrefix("[IMGO] ")
 
@@ -151,14 +151,16 @@ func (i *Image) Save(path string, quality ...int) *Image {
     pathSplit := strings.Split(path, ".")
     extension := pathSplit[len(pathSplit)-1]
     if !(extension == "png" || extension == "jpg" || extension == "jpeg" || extension == "tiff" || extension == "bmp") {
-        log.Println(ErrSaveImageFormatNotSupport)
+        i.addError(ErrSaveImageFormatNotSupport)
+        log.Println(i.Error)
         return i
     }
 
     // create file
     file, err := os.Create(path)
     if err != nil {
-        log.Println(err)
+        i.addError(err)
+        log.Println(i.Error)
         return i
     }
     defer func(file *os.File) {
@@ -200,7 +202,8 @@ func (i *Image) Save(path string, quality ...int) *Image {
     }
 
     if err != nil {
-        log.Println(err)
+        i.addError(err)
+        log.Println(i.Error)
         return i
     }
     return i
@@ -380,7 +383,7 @@ func (i *Image) Thumbnail(width, height int) *Image {
         return i
     }
 
-    if width >= i.width || height >= i.height {
+    if width >= i.width || height >= i.height || width == 0 || height == 0 {
         return i
     }
 
