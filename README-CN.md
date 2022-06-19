@@ -1,6 +1,7 @@
 # ImGo
 [English](README.md) | 简体中文
 
+![Github stars](https://img.shields.io/github/stars/fishtailstudio/imgo?style=social)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/fishtailstudio/imgo)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/fishtailstudio/imgo)
 [![GoDoc](https://godoc.org/github.com/fishtailstudio/imgo?status.svg)](https://pkg.go.dev/github.com/fishtailstudio/imgo)
@@ -20,20 +21,19 @@ go get -u github.com/fishtailstudio/imgo
 
 ## 文档
 
+[English Documentation](https://imgo.gitbook.io/en/) | [简体中文文档](https://imgo.gitbook.io/cn/)
 
 ## 如何使用
 
 ```go
 package main
 
-import (
-    "github.com/fishtailstudio/imgo"
-    "image/color"
-)
+import "github.com/fishtailstudio/imgo"
 
 func main() {
-    imgo.Canvas(500, 500, color.Black).
-        Insert("gopher.png", 100, 100).
+    imgo.Load("background.png").
+        Resize(250, 350).
+        Insert("gopher.png", 50, 50).
         Save("out.png")
 }
 ```
