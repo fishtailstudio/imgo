@@ -18,7 +18,7 @@ func (i Image) PickColor(x, y int) (res color.RGBA) {
     return color.RGBAModel.Convert(pixel).(color.RGBA)
 }
 
-// MainColor returns the main color in the image
+// MainColor returns the main color of the image
 func (i *Image) MainColor() (res color.RGBA) {
     if i.Error != nil {
         log.Println(i.Error)

@@ -30,7 +30,7 @@ func LoadFromBase64(base64Str string) (i *Image) {
     }
 
     // Get the extension, mimetype and corresponding decoder function of the image.
-    ext, mime, decoder, err := GetImageType(decodeString[:8])
+    ext, mimetype, decoder, err := GetImageType(decodeString[:8])
     if err != nil {
         i.addError(err)
         return
@@ -49,6 +49,6 @@ func LoadFromBase64(base64Str string) (i *Image) {
         width:     img.Bounds().Dx(),
         height:    img.Bounds().Dy(),
         extension: ext,
-        mime:      mime,
+        mimetype:  mimetype,
     }
 }

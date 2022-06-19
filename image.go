@@ -29,7 +29,7 @@ type Image struct {
     width       int         // image width
     height      int         // image height
     extension   string      // image extension
-    mime        string      // image mimetype
+    mimetype    string      // image mimetype
     filesize    int64       // image filesize
     isGrayscale bool        // is grayscale image
 }
@@ -41,7 +41,7 @@ func (i Image) ToImage() image.Image {
 
 // String returns the image as a string.
 func (i Image) String() string {
-    return fmt.Sprintf("extension: %v\nmime: %v\nwidth: %v\nheight: %v\n", i.extension, i.mime, i.width, i.height)
+    return fmt.Sprintf("Extension: %v\nMimetype: %v\nWidth: %v\nHeight: %v\n", i.extension, i.mimetype, i.width, i.height)
 }
 
 // addError adds an error to imgo.
@@ -74,14 +74,14 @@ func (i *Image) addError(err error, OnlyReason ...bool) {
     }
 }
 
-// Extension returns the file extension of the image.
+// Extension returns the extension of the image.
 func (i Image) Extension() string {
     return i.extension
 }
 
-// Mime returns the file mime type of the image.
-func (i Image) Mime() string {
-    return i.mime
+// Mimetype returns the mimetype of the image.
+func (i Image) Mimetype() string {
+    return i.mimetype
 }
 
 // Height returns the height of the image.

@@ -89,7 +89,7 @@ func LoadFromUrl(url string) (i *Image) {
         width:     img.Bounds().Dx(),
         height:    img.Bounds().Dy(),
         extension: ext,
-        mime:      mime,
+        mimetype:  mime,
     }
 }
 
@@ -148,7 +148,7 @@ func LoadFromFile(file *os.File) (i *Image) {
         width:     img.Bounds().Dx(),
         height:    img.Bounds().Dy(),
         extension: ext,
-        mime:      mime,
+        mimetype:  mime,
         filesize:  stat.Size(),
     }
 }
@@ -180,7 +180,7 @@ func LoadFromImage(img image.Image) (i *Image) {
         width:     img.Bounds().Dx(),
         height:    img.Bounds().Dy(),
         extension: formatName,
-        mime:      "image/" + formatName,
+        mimetype:  "image/" + formatName,
     }
 }
 
@@ -210,6 +210,6 @@ func Canvas(width, height int, fillColor ...color.Color) *Image {
         width:     img.Bounds().Dx(),
         height:    img.Bounds().Dy(),
         extension: "png",
-        mime:      "image/png",
+        mimetype:  "image/png",
     }
 }
