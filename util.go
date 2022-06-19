@@ -14,7 +14,7 @@ import (
 )
 
 // GetImageType returns the extension, mimetype and corresponding decoder function of the image.
-// It judges the image by its first several bytes called magic number.
+// It judges the image by its first few bytes called magic number.
 func GetImageType(bytes []byte) (ext string, mime string, decoder func(r io.Reader) (image.Image, error), err error) {
     if len(bytes) < 2 {
         err = ErrSourceImageNotSupport
