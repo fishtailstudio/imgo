@@ -24,6 +24,8 @@ func Load(source interface{}) *Image {
         return LoadFromImage(source.(image.Image))
     case []byte:
         return loadFromString(string(source.([]byte)))
+    case *Image:
+        return LoadFromImgo(source.(*Image))
     default:
         i := &Image{}
         i.addError(ErrSourceNotSupport)
@@ -180,6 +182,11 @@ func LoadFromImage(img image.Image) (i *Image) {
         extension: formatName,
         mime:      "image/" + formatName,
     }
+}
+
+// LoadFromImgo loads an image from an instance of Image.
+func LoadFromImgo(i *Image) *Image {
+    return i
 }
 
 // Canvas create a new empty image.
