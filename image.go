@@ -247,7 +247,7 @@ func (i *Image) Crop(x, y, width, height int) *Image {
     return i
 }
 
-// Rotate rotates the image by the specified angle.
+// Rotate rotates the image clockwise by the specified angle.
 func (i *Image) Rotate(angle int) *Image {
     if i.Error != nil {
         return i
