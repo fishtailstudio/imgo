@@ -5,6 +5,7 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/fishtailstudio/imgo)
 ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/fishtailstudio/imgo)
 [![GoDoc](https://godoc.org/github.com/fishtailstudio/imgo?status.svg)](https://pkg.go.dev/github.com/fishtailstudio/imgo)
+[![Go Report Card](https://goreportcard.com/badge/github.com/fishtailstudio/imgo)](https://goreportcard.com/report/github.com/fishtailstudio/imgo)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 介绍
