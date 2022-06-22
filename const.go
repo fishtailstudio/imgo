@@ -4,6 +4,6 @@ package imgo
 type FlipType int
 
 const (
-    Vertical FlipType = iota
-    Horizontal
+	Vertical FlipType = iota
+	Horizontal
 )
