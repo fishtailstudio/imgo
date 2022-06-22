@@ -44,7 +44,7 @@ func main() {
 
 ## Contributing
 
-Feel free to dive in! [Open an Issue](https://github.com/fishtailstudio/imgo/issues/new) or submit PRs.
+Feel free to dive in! [Open an Issue](https://github.com/fishtailstudio/imgo/issues/new) or [submit PRs](https://github.com/fishtailstudio/imgo/pulls).
 
 ## Give a Star ! ⭐
 

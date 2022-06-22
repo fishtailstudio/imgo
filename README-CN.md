@@ -44,7 +44,7 @@ func main() {
 
 ## 如何贡献
 
-非常欢迎大家[提交 Issue](https://github.com/fishtailstudio/imgo/issues/new) 或提交 Pull Request。
+非常欢迎大家 [提交 Issue](https://github.com/fishtailstudio/imgo/issues/new) 或 [提交 Pull Request](https://github.com/fishtailstudio/imgo/pulls)。
 
 ## 点个 Star ! ⭐
 
