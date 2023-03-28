@@ -139,7 +139,7 @@ func (i *Image) Insert(source interface{}, x, y int) *Image {
 	return i
 }
 
-// Save saves the image to the specified path.
+// Output image data as bytes.
 // Only png, jpeg, jpg, tiff and bmp image file type are supported.
 // data is output save's image data.
 // imageType is the out image file type.
