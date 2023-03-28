@@ -1,14 +1,8 @@
 package imgo
 
 import (
+	"bytes"
 	"fmt"
-	"github.com/BurntSushi/graphics-go/graphics"
-	cliColor "github.com/fatih/color"
-	"github.com/golang/freetype"
-	"github.com/nfnt/resize"
-	"golang.org/x/image/bmp"
-	"golang.org/x/image/font"
-	"golang.org/x/image/tiff"
 	"image"
 	"image/color"
 	"image/draw"
@@ -21,6 +15,14 @@ import (
 	"os"
 	"runtime"
 	"strings"
+
+	"github.com/BurntSushi/graphics-go/graphics"
+	cliColor "github.com/fatih/color"
+	"github.com/golang/freetype"
+	"github.com/nfnt/resize"
+	"golang.org/x/image/bmp"
+	"golang.org/x/image/font"
+	"golang.org/x/image/tiff"
 )
 
 type Image struct {
@@ -134,6 +136,66 @@ func (i *Image) Insert(source interface{}, x, y int) *Image {
 	// insert the image
 	draw.Draw(i.image, i.Bounds(), insert.image, insert.image.Bounds().Min.Sub(image.Pt(x, y)), draw.Over)
 
+	return i
+}
+
+// Save saves the image to the specified path.
+// Only png, jpeg, jpg, tiff and bmp image file type are supported.
+// data is output save's image data.
+// imageType is the out image file type.
+// quality is the quality of the image, between 1 and 100, default is 100, and is only used for jpeg images.
+func (i *Image) OutPut(data *bytes.Buffer, imageType string, quality ...int) *Image {
+	var err error
+	if i.Error != nil {
+		log.Println(i.Error)
+		return i
+	}
+
+	// check imageType
+	if !(imageType == "png" || imageType == "jpg" || imageType == "jpeg" || imageType == "tiff" || imageType == "bmp") {
+		i.addError(ErrSaveImageFormatNotSupport)
+		log.Println(i.Error)
+		return i
+	}
+
+	// get the image
+	var img image.Image
+	if i.isGrayscale {
+		// grayscale image
+		gray := image.NewGray(i.image.Bounds())
+		for x := 0; x < i.width; x++ {
+			for y := 0; y < i.height; y++ {
+				rgbColor := i.image.At(x, y)
+				grayColor := gray.ColorModel().Convert(rgbColor)
+				gray.Set(x, y, grayColor)
+			}
+		}
+		img = gray
+	} else {
+		// RGBA image
+		img = i.image
+	}
+
+	// save image to file
+	if imageType == "png" {
+		err = png.Encode(data, img)
+	} else if imageType == "jpg" || imageType == "jpeg" {
+		if len(quality) > 0 && quality[0] > 0 && quality[0] < 100 {
+			err = jpeg.Encode(data, img, &jpeg.Options{Quality: quality[0]})
+		} else {
+			err = jpeg.Encode(data, img, &jpeg.Options{Quality: 100})
+		}
+	} else if imageType == "tiff" {
+		err = tiff.Encode(data, img, &tiff.Options{Compression: tiff.Deflate, Predictor: true})
+	} else if imageType == "bmp" {
+		err = bmp.Encode(data, img)
+	}
+
+	if err != nil {
+		i.addError(err)
+		log.Println(i.Error)
+		return i
+	}
 	return i
 }
 
