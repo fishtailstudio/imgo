@@ -17,14 +17,17 @@ func TestOutPutData(t *testing.T) {
 	os.WriteFile("out.png", data.Bytes(), 0777)
 
 	// jpg jpeg
+	data = new(bytes.Buffer)
 	img.OutPut(data, "jpg")
 	os.WriteFile("out.jpg", data.Bytes(), 0777)
 
 	// tiff
+	data = new(bytes.Buffer)
 	img.OutPut(data, "tiff")
 	os.WriteFile("out.tiff", data.Bytes(), 0777)
 
 	// bmp
+	data = new(bytes.Buffer)
 	img.OutPut(data, "bmp")
 	os.WriteFile("out.bmp", data.Bytes(), 0777)
 }
